@@ -1,8 +1,12 @@
 function _sbp_timer_start { # Timer of last timer
   if [[ -z "$_sbp_timer_complete" && -z "$_sbp_timer" ]]; then
+    #echo "1: shell init or something"
     _sbp_timer=$SECONDS
-  else
+  elif [[ ! -z "$_sbp_timer_complete" && -z "$_sbp_timer" ]]; then
+    #echo "2: New command starting"
+    _sbp_timer=$SECONDS
     unset _sbp_timer_complete
+  #else #echo "3: Command in progress"
   fi
 }
 
